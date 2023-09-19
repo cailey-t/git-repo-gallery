@@ -73,7 +73,7 @@ const getRepoInfo = async function (repoName) {
     const fetchRepo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await fetchRepo.json();
 
-    const fetchLanguages = await fetch(`https://api.github.com/repos/${username}/${repoName}/languages`);
+    const fetchLanguages = await fetch(repoInfo.languages_url);
     const languageData = await fetchLanguages.json();
 
     const languages = [];
@@ -106,7 +106,7 @@ const displayRepoInfo = function (repoInfo, languages) {
 backButton.addEventListener("click", function() {
     repos.classList.remove("hide");
     repoData.classList.add("hide");
-
+    backButton.classList.add("hide");
 });
 
 //input event to search box
